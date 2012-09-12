@@ -19,7 +19,7 @@ AUTHOR: TEAM AWESOME
     
 
 	  //constructor
-	  Mortgage(long amt, int pay, long rate) ;
+	  Mortgage() ;
 
 	  //get loan amount
 	  long getAmt() const;

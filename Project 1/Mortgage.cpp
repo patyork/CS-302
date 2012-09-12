@@ -20,13 +20,13 @@ int main(){
 	
 	float version = 1.01f;
 	
-	//Mortgage myMorg ;
+	Mortgage myMorg ;
 	
 	cout << "Hello Welcome to the Great Mortgage Calculator  " << (version) << endl <<endl <<endl ;
 	
 	cout << "Please enter loan amount:  " ;
 	
-	//cin >> myMorg.loanAmt ;
+	cin >> myMorg.loanAmt ;
 	
 	cout << endl <<endl;
 	
