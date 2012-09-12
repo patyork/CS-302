@@ -34,8 +34,8 @@ AUTHOR: TEAM AWESOME
 	  
 	  long monthPay() const;
 	  
-	  //change rate
-	  void setRate();
+	  //change loan Amount
+	  void setloan();
 	  
 	  //change payNum
 	  void setPayNum();
