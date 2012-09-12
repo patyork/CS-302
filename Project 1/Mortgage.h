@@ -35,13 +35,13 @@ AUTHOR: TEAM AWESOME
 	  long monthPay() const;
 	  
 	  //change loan Amount
-	  void setloan();
+	  void setloan(long loan);
 	  
 	  //change payNum
-	  void setPayNum();
+	  void setPayNum(int numPay);
 	  
 	  //change rate
-	  void setRate();
+	  void setRate(long rate);
 	 
 	  //returns total intrest paid
 	  long intPay();
