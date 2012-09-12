@@ -19,6 +19,7 @@ using namespace std;
 int main(){
 	
 	float version = 1.01f;
+	long loanMoney;
 	
 	Mortgage myMorg ;
 	
@@ -26,7 +27,10 @@ int main(){
 	
 	cout << "Please enter loan amount:  " ;
 	
-	cin >> myMorg.loanAmt ;
+	cin >> loanMoney ;
+	
+	myMorg.loanAmt(loanMoney);
+	
 	
 	cout << endl <<endl;
 	
