@@ -10,9 +10,9 @@ AUTHOR: TEAM AWESOME
   class Mortgage {
   private:
 
-	  long loanAmt ;
+	  float loanAmt ;
 	  int payNum ;
-	  long rate;
+	  float rate;
 	  
 
   public:
@@ -22,32 +22,32 @@ AUTHOR: TEAM AWESOME
 	  Mortgage() ;
 
 	  //get loan amount
-	  long getAmt() const;
+	  float getAmt() const;
 	  
 	  //get payment number
 	  int getPayNum() const;
 	  
 	  //get intrest rate
-	  long getRate() const;
+	  float getRate() const;
 	  
 	  //calculate monthly payment
 	  
-	  long monthPay() const;
+	  float monthPay() const;
 	  
 	  //change loan Amount
-	  void setloan(long loan);
+	  void setloan(float loan);
 	  
 	  //change payNum
 	  void setPayNum(int numPay);
 	  
 	  //change rate
-	  void setRate(long rate);
+	  void setRate(float newRate);
 	 
 	  //returns total intrest paid
-	  long intPay();
+	  float intPay();
 	  
 	  //return total amount paid
-	  long totalAmt();
+	  float totalAmt();
   };
   
 
