@@ -1,1 +1,0 @@
-/usr/bin/c++   -g -Wall    CMakeFiles/out.dir/Mortgage.cpp.o CMakeFiles/out.dir/Main.cpp.o  -o ../bin/out -rdynamic 

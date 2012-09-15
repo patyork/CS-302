@@ -1,1 +1,0 @@
-/home/patrick/Desktop/CS302/CS-302/Project 1/build/CMakeFiles/out.dir
