@@ -39,7 +39,9 @@ int main(){
 	myMorg.setloan(10000);
 	myMorg.setPayNum(120);
 	myMorg.setRate(6.75f);
-	cout << myMorg.monthPay() << endl << myMorg.totalAmt() << endl << myMorg.intPay() << endl;
+	cout << "Monthly Payment: " << myMorg.monthPay() << endl
+		<< "Total Loan Amount: " << myMorg.totalAmt() << endl
+		<< "Total Interest to be Paid: " << myMorg.intPay() << endl;
 	
 	
 	
