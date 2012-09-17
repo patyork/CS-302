@@ -18,36 +18,53 @@ using namespace std;
 
 int main(){
 	
+	float version = 1.01f;
+	float loanMoney;
+	float rate;
+	int payNum;
+	
 	Mortgage myMorg;
 	
-	/*float version = 1.01f;
-	long loanMoney;
-	
-	
-	
-	cout << "Hello Welcome to the Great Mortgage Calculator  " << (version) << endl <<endl <<endl ;
+	while(1){
+		
+	cout << "Hello Welcome to the Great Mortgage Calculator  " << version << endl <<endl <<endl ;
 	
 	cout << "Please enter loan amount:  " ;
 	
 	cin >> loanMoney ;
 	
-	myMorg.loanAmt(loanMoney);
+	if(loanMoney == 0.0){
+		return 0;
+	}
+	
+	myMorg.setloan(loanMoney);
+	cout << endl <<endl;
+	
+	//paynumber
+	cout << "Please Number Of Payments:  " ;
+	
+	cin >> payNum ;
+	
+	myMorg.setPayNum(payNum);
+	cout << endl <<endl;
+	
+	//rate
+	cout << "Please enter Intrest Rate:  " ;
+	
+	cin >> rate ;
+	
+	myMorg.setRate(rate);
 	
 	
-	cout << endl <<endl;*/
-	
-	myMorg.setloan(10000);
-	myMorg.setPayNum(120);
-	myMorg.setRate(6.75f);
-	cout << "Monthly Payment: " << myMorg.monthPay() << endl
-		<< "Total Loan Amount: " << myMorg.totalAmt() << endl
-		<< "Total Interest to be Paid: " << myMorg.intPay() << endl;
+	cout << endl <<endl;
 	
 	
+	cout << "  Monthly Payments: " << myMorg.monthPay() << endl << " Total Amount Paid: "<< myMorg.totalAmt() << endl
+			<< "     Interest paid: " << myMorg.intPay() << endl << "     Interest rate: " <<myMorg.getRate() <<endl
+			<<" Total Loan Amount: " << myMorg.getAmt() <<endl << "Number of Payments: " << myMorg.getPayNum() <<endl<<endl<<endl;
+			
 	
-	
-	
-	
+	}
 	
 	
 	
