@@ -19,7 +19,10 @@ AUTHOR: TEAM AWESOME
     
 
 	  //constructor
-	  Mortgage() ;
+	  Mortgage();
+	  
+	  //constructor
+	  Mortgage(float loan, int numPay, float newRate);
 
 	  //get loan amount
 	  float getAmt() const;
@@ -31,7 +34,6 @@ AUTHOR: TEAM AWESOME
 	  float getRate() const;
 	  
 	  //calculate monthly payment
-	  
 	  float monthPay() const;
 	  
 	  //change loan Amount

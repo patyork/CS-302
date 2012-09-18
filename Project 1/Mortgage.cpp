@@ -13,6 +13,14 @@ Mortgage::Mortgage()
 	payNum = 0;
 	rate = 0.0f;
 }
+
+//Constructor
+Mortgage::Mortgage(float loan, int numPay, float newRate)
+{
+	loanAmt = loan;
+	payNum = numPay;
+	rate = newRate;
+}
 	  
 
 //get loan amount
@@ -61,11 +69,11 @@ void Mortgage::setRate(float newRate)
 //returns total intrest paid
 float Mortgage::intPay()
 {
-	return loanAmt * rate/100;
+	return monthPay() * payNum - loanAmt;
 }
 	  
 //return total amount paid
 float Mortgage::totalAmt()
 {
-	return loanAmt * rate/100 + loanAmt;
+	return monthPay() * payNum;
 }
