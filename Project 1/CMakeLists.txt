@@ -26,16 +26,16 @@ include_directories(
 # bit like an "include" for building your project. It causes cmake to
 # recursively work on creating build files for the specified
 # subdirectory.
-#add_subdirectory(${PROJECT_SOURCE_DIR}/gtest-1.6.0)
-#include_directories(${PROJECT_SOURCE_DIR}/gtest-1.6.0/include)
+add_subdirectory(${PROJECT_SOURCE_DIR}/gtest-1.6.0)
+include_directories(${PROJECT_SOURCE_DIR}/gtest-1.6.0/include)
 
 # The add_executable command takes an executable name and a list of
 # source files. In this case the source files will be compiled into a
 # binary named tests
 add_executable(out 
   Mortgage.cpp
-  Main.cpp
+  Mortgage_Test.cpp
 )
 
 # The target_link_libraries takes a binary name and a library
-#target_link_libraries(out gtest_main)
+target_link_libraries(out gtest_main)
