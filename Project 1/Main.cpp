@@ -27,7 +27,7 @@ int main(){
 	
 	while(1){
 		
-	cout << "Hello Welcome to the Great Mortgage Calculator  " << version << endl <<endl <<endl ;
+	cout << endl << "Hello, and Welcome to the Great Mortgage Calculator  v" << version << endl <<endl <<endl ;
 	
 	cout << "Please enter loan amount:  " ;
 	
@@ -38,7 +38,7 @@ int main(){
 	}
 	
 	myMorg.setloan(loanMoney);
-	cout << endl <<endl;
+	cout << endl;
 	
 	//paynumber
 	cout << "Please Number Of Payments:  " ;
@@ -46,7 +46,7 @@ int main(){
 	cin >> payNum ;
 	
 	myMorg.setPayNum(payNum);
-	cout << endl <<endl;
+	cout << endl;
 	
 	//rate
 	cout << "Please enter Intrest Rate:  " ;
@@ -59,9 +59,9 @@ int main(){
 	cout << endl <<endl;
 	
 	
-	cout << "  Monthly Payments: " << myMorg.monthPay() << endl << " Total Amount Paid: "<< myMorg.totalAmt() << endl
-			<< "     Interest paid: " << myMorg.intPay() << endl << "     Interest rate: " <<myMorg.getRate() <<endl
-			<<" Total Loan Amount: " << myMorg.getAmt() <<endl << "Number of Payments: " << myMorg.getPayNum() <<endl<<endl<<endl;
+	cout << "  Monthly Payments: $" << myMorg.monthPay() << endl << " Total Amount Paid: $"<< myMorg.totalAmt() << endl
+			<< "     Interest paid: $" << myMorg.intPay() << endl << "     Interest rate: " <<myMorg.getRate() << "%" <<endl
+			<<" Total Loan Amount: $" << myMorg.getAmt() <<endl << "Number of Payments: " << myMorg.getPayNum() <<endl<<endl<<endl;
 			
 	
 	}
