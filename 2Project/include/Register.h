@@ -1,6 +1,6 @@
 /*****************************************/
 /*
-/*  Cash Register - CS302 Project 2
+/*  Specifications for class Register
 /*
 /*  Author:
 /*
@@ -9,6 +9,7 @@
 class Register{
 
 	public:
+		Register();
 
 
 	private:

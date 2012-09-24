@@ -19,6 +19,7 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 # we use include_directories to tell cmake where our source folders
 # are.
 include_directories(
+  ${PROJECT_SOURCE_DIR}/include
   ${PROJECT_SOURCE_DIR}/src/main
   #${PROJECT_SOURCE_DIR}/src/test
 )

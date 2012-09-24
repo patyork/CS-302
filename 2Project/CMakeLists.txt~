@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 # This sets the name of the project.
-project(MortgageCalc)
+project(CashRegister)
 
 # We can manually set compiler flags via cmake's set command.  
 # -Wall enables all compiler warnings. You should get in the habit of
@@ -19,6 +19,7 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 # we use include_directories to tell cmake where our source folders
 # are.
 include_directories(
+  ${PROJECT_SOURCE_DIR}/include/
   ${PROJECT_SOURCE_DIR}/src/main
   #${PROJECT_SOURCE_DIR}/src/test
 )
