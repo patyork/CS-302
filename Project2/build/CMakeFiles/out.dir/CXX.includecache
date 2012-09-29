@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/patrick/Desktop/CS302/CS-302/Project2/Inventory.cpp
+Inventory.h
+/home/patrick/Desktop/CS302/CS-302/Project2/Inventory.h
+Product.h
+/home/patrick/Desktop/CS302/CS-302/Project2/Product.h
+iostream
+-
+iomanip
+-
+
+/home/patrick/Desktop/CS302/CS-302/Project2/Inventory.h
+Product.h
+/home/patrick/Desktop/CS302/CS-302/Project2/Product.h
+
+/home/patrick/Desktop/CS302/CS-302/Project2/Main.cpp
+Inventory.h
+/home/patrick/Desktop/CS302/CS-302/Project2/Inventory.h
+Product.h
+/home/patrick/Desktop/CS302/CS-302/Project2/Product.h
+iostream
+-
+fstream
+-
+
+/home/patrick/Desktop/CS302/CS-302/Project2/Product.cpp
+Product.h
+/home/patrick/Desktop/CS302/CS-302/Project2/Product.h
+
+/home/patrick/Desktop/CS302/CS-302/Project2/Product.h
+

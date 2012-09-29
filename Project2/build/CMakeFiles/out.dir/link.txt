@@ -1,0 +1,1 @@
+/usr/bin/c++   -g -Wall    CMakeFiles/out.dir/Main.cpp.o CMakeFiles/out.dir/Product.cpp.o CMakeFiles/out.dir/Inventory.cpp.o  -o ../bin/out -rdynamic 

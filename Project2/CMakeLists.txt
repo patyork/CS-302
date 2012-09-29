@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 # This sets the name of the project.
-project(CashRegister)
+project(Assignment2)
 
 # We can manually set compiler flags via cmake's set command.  
 # -Wall enables all compiler warnings. You should get in the habit of
@@ -19,26 +19,24 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 # we use include_directories to tell cmake where our source folders
 # are.
 include_directories(
-  ${PROJECT_SOURCE_DIR}/include
-  ${PROJECT_SOURCE_DIR}/src/main
-  #${PROJECT_SOURCE_DIR}/src/test
+  ${PROJECT_SOURCE_DIR}
 )
 
 # These commands add Google test. The add_subdirectory command is a
 # bit like an "include" for building your project. It causes cmake to
 # recursively work on creating build files for the specified
 # subdirectory.
-####add_subdirectory(${PROJECT_SOURCE_DIR}/gtest-1.6.0)
-####include_directories(${PROJECT_SOURCE_DIR}/gtest-1.6.0/include)
+#add_subdirectory(${PROJECT_SOURCE_DIR}/gtest-1.6.0)
+#include_directories(${PROJECT_SOURCE_DIR}/gtest-1.6.0/include)
 
 # The add_executable command takes an executable name and a list of
 # source files. In this case the source files will be compiled into a
 # binary named tests
 add_executable(out 
-  Register.cpp
   Main.cpp
-  #Register_Test.cpp
+  Product.cpp
+  Inventory.cpp
 )
 
 # The target_link_libraries takes a binary name and a library
-####target_link_libraries(out gtest_main)
+#target_link_libraries(out gtest_main)
