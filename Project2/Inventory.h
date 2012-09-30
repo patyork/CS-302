@@ -21,6 +21,8 @@ class Inventory
 		Product findProduct(int productNum);
 		void addToInventory(int num, char* desc, float cost, bool tax);
 		void printInventory();
+		bool isFull();
+		bool numberExists(int productNum);
 };
 
 #endif
