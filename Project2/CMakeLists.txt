@@ -14,7 +14,7 @@ set(CMAKE_CXX_FLAGS "-g -Wall")
 # We use this line to specify the location of the compiler's output.
 # PROJECT_SOURCE_DIR is a cmake variable that specifies the current
 # directory.
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 
 # we use include_directories to tell cmake where our source folders
 # are.
