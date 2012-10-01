@@ -33,7 +33,7 @@ include_directories(
 # source files. In this case the source files will be compiled into a
 # binary named tests
 add_executable(out 
-  Main.cpp
+  prog2.cpp
   Product.cpp
   Inventory.cpp
 )

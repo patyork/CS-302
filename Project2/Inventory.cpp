@@ -18,6 +18,10 @@ Inventory::Inventory()
 
 Product Inventory::findProduct(int productNum)
 {
+	for( int i=0; i<numberOfProducts; i++ )
+		if( products[i].getNumber() == productNum )
+			return products[i];
+			
 	Product a;
 	return a;
 }
@@ -38,10 +42,10 @@ void Inventory::printInventory()
 	
 	for( int i=0; i < numberOfProducts; i++ )
 	{
-		cout << setw(8) << products[i].getNumber() << setw(18) << products[i].getDescription()
+		cout << left << setw(8) << products[i].getNumber() << setw(18) << products[i].getDescription()
 			<< setw(5) << products[i].getPrice();
-		if( products[i].getTax() == true ) cout << setw(2) << "T" << endl;
-		else cout << setw(2) << "F" << endl;
+		if( products[i].getTax() == true ) cout << left << setw(2) << "T" << endl;
+		else cout << left << setw(2) << "N" << endl;
 	}
 }
 

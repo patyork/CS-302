@@ -13,7 +13,7 @@ Product::Product()
 {
     number=0;			// Hold the Product Number
     description[0]='\0';	// Holds the Product Description
-    price=0.0;			// Holds the Product Price
+    price=0.0f;			// Holds the Product Price
     taxable=false;	
 }
 
@@ -32,7 +32,7 @@ int Product::getNumber()
 
 char* Product::getDescription()
 {
-	return &description[0];
+	return description;
 }
 
 float Product::getPrice()
@@ -47,5 +47,8 @@ bool Product::getTax()
 
 void Product::addProduct(int num, char* desc, float cost, bool tax)
 {
-
+	number = num;
+	strcpy(description, desc);
+	price = cost;
+	taxable = tax;
 }
