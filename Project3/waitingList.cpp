@@ -35,6 +35,12 @@ void waitingList::enqueue( char Name[], char Holiday[] )
 	}
 }
 
+ int waitingList::getLength(){
+     return length;
+     
+     
+ }
+ 
 void waitingList::priorityEnqueue( char Name[], char Holiday[] )
 {
 	if( length==0 )
@@ -51,14 +57,27 @@ void waitingList::priorityEnqueue( char Name[], char Holiday[] )
 }
 		
 // Function for finding the first person on the wait list for a certain holiday
-bool waitingList::findDequeue( char Holiday[] )
+bool waitingList::findDequeue( char Holiday[],char* custname )
 {
 	node *tmp = first;
+        
+        
 	if( first != NULL )
 	{
 		if( strcmp(Holiday, tmp->holiday) == 0 ) // if you've found a customer waiting in that holiday
 		{
-			//Do something with the person on the waitlist
+                    strcpy(custname,tmp->name);
+                    if (length == 1){
+                    first = NULL ;
+                    length-- ;
+                    }
+                    
+                    else{
+                          strcpy(custname,tmp->name);
+                        first = first = tmp->next;
+                        length--;
+                    }
+                    
 			return true;
 		}
 		
@@ -67,7 +86,10 @@ bool waitingList::findDequeue( char Holiday[] )
 			tmp = tmp->next;
 			if( strcmp(Holiday, tmp->holiday) == 0 ) // if you've found a customer waiting in that holiday
 			{
-				//Do something with the person on the waitlist
+				                
+                           custname = tmp->name;
+                        first = first = tmp->next;
+                        length--;
 				return true;
 			}
 			

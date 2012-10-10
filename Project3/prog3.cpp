@@ -13,6 +13,7 @@
 #include "waitingList.h"
 #include "magBooking.h"
 #include "holBooking.h"
+#include "node.h"
 
 const char* outputFileName = "Schedule.dat";
 
@@ -177,12 +178,15 @@ int main()
     
     HolidaySched holiday;
     MagiciansSched sched;
-    
+    waitingList wList;
     
 	int menuOne;
-        char custName[10];
-        char hol[10];
-        
+        char* name;
+        char custName[20];
+        char hol[20];
+        char mage[20];
+        node * ptr;
+        bool add = false;
         bool added = false;
         
 	/*waitingList waitList;
@@ -219,15 +223,30 @@ int main()
             cout <<endl << "Name Of Holiday: "  ;
             cin >> hol;
             cout << endl;
-            
-            char *available;
+          
+            char* available ;
+            available= new char [10];
             strcpy(available, sched.findAvailableMag(hol));
             
             if(strcmp("NONE",available) == 0){
-                //WAITING LIST FUNCTIONALITY
+                wList.enqueue(custName,hol);
+                cout<< "No magicians Available for that Holdiay, You are on the waiting list" <<endl;
             }
             else{
-               added = sched.add(hol,custName,available); 
+               added = sched.add(hol,custName,available);
+               if(added){
+               cout <<endl<<endl<< "Reservations Confirmed: " <<endl<<endl<<endl;
+               
+               cout << "Magician: " << available << endl;
+               
+               cout << "Holiday: " << hol <<endl;
+               
+               cout << "Name Of Customer: " <<custName <<endl;
+               added = false;
+               }
+               else{
+                   cout << "Reservation Error" <<endl;
+               }
             }
             
               
@@ -241,19 +260,119 @@ int main()
                
         case 3:
                  cout <<endl <<endl <<endl ;
+                 cout<<"New Magicians Name: "<<endl;
+                 cin >>mage;
+                 sched.signupMagician(mage);
+                                      
+                 char* available2 ;          
+                 
+                 available2= new char [10];
+                 
+                 for(int i = 0;i <10;i++){
+                     
+                              
+                     char* available2 ;          
+                     available2= new char [10];
+                     strcpy(available2, sched.findAvailableMag(holiday.holidayList[i].getHolidayName()));
+                     if(strcmp("NONE",available2) == 0){
                 
+                     }
+                     if(wList.findDequeue(holiday.holidayList[i].getHolidayName(), name))
+                     {
+               
+                         added = sched.add(holiday.holidayList[i].getHolidayName(),name,available2);
+               
+                         if(added){              
+                             cout <<endl<<endl<< "Reservations Confirmed: " <<endl<<endl<<endl;             
+                             cout << "Magician: " << available2 << endl; 
+                             cout << "Holiday: " << holiday.holidayList[i].getHolidayName() <<endl;
+                             cout << "Name Of Customer: " <<name <<endl;              
+                             added = false;               
+                         }
+               
+                         else{
+                   
+                             cout << "Reservation Error" <<endl;
+               
+                         }
+                     
+                     } 
+                 }
               
             break;
                
         case 4:
                
                 cout <<endl <<endl <<endl ;         
+                           
+                cout<<"Magicians Name To Drop: "<<endl;
+                cin >>mage;
                 
-             
+                                   
+                char* available3 ;          
+                
+                available3= new char [10];             
+                node * tmpp ;
+                for(int i = 0;i <10;i++){
+
+                    if(strcmp(mage,sched.magicianList[i].getMagName())==0)
+                    { 
+                        tmpp = sched.magicianList[i].first;
+                        
+                        while(tmpp != NULL){
+          
+           
+                            strcpy(available3, sched.findAvailableMag(tmpp->holiday));
+                           
+                        if(strcmp("NONE",available3) == 0){
+                                wList.priorityEnqueue(tmpp->name,tmpp->holiday);
+               
+                                cout<< "No magicians Available for that Holiday, You are on the waiting list" <<endl;
+                     }
+                        else{
+               
+                         added = sched.add(tmpp->holiday,tmpp->name,available3);
+               
+                         if(added){              
+                             cout <<endl<<endl<< "Reservations Confirmed: " <<endl<<endl<<endl;             
+                             cout << "Magician: " << available3 << endl; 
+                             cout << "Holiday: " << tmpp->holiday <<endl;
+                             cout << "Name Of Customer: " <<tmpp->name <<endl;              
+                             added = false;               
+                         }
+               
+                         else{
+                   
+                             cout << "Reservation Error" <<endl;
+               
+                         }
+                     
+                     } 
+                            tmpp = tmpp->next;
+                 }
+                    }
+                }
             break;
                
         case 5:
                 
+            cout << endl <<"Status: "<<endl <<endl;
+            cout <<"By (H)oliday or (M)agician :" <<endl <<endl;
+            cin >>menuOne;
+            
+            switch(menuOne)
+                    
+        case 'H' :
+        case 'h' :
+            cin >> hol;
+             cout <<endl <<endl <<endl ; 
+            
+            break;
+            
+        case 'M':
+        case'm':
+            
+            cin >> mage;
                 cout <<endl <<endl <<endl ; 
                
             break;
@@ -264,6 +383,11 @@ int main()
             cout <<endl <<endl <<endl ;
             return 0;
             break;
+            
+         
+        default:
+                cout << "Please Enter A Number 1-6" <<endl;
+                break;
                 
     }
     }

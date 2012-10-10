@@ -11,11 +11,11 @@
 
 class node
 {
-	private:
+	public:
 		node *next;		//pointer to next node
 		char	name[21];		//name of the customer
 		char holiday[21];  	//name of the holiday (also used for the name of the magician)
-	public:
+	
 		//Constructor
 		node();
 		
