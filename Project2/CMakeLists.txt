@@ -34,8 +34,8 @@ include_directories(
 # binary named tests
 add_executable(out 
   prog2.cpp
-  Product.cpp
-  Inventory.cpp
+  adt2p.cpp
+  adt2i.cpp
 )
 
 # The target_link_libraries takes a binary name and a library

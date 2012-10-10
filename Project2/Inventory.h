@@ -8,7 +8,7 @@
 	
 */
 
-#include "Product.h"
+#include "adt2_p.h"
 
 class Inventory
 {

@@ -6,8 +6,8 @@
 
 */
 
-#include "Inventory.h"
-#include "Product.h"
+#include "adt2i.h"
+#include "adt2p.h"
 #include <iostream>
 #include <fstream>
 #include <iomanip>
