@@ -112,7 +112,18 @@ void menu();
 
 int main()
 {
+     
+    
+    HolidaySched holiday;
+    MagiciansSched sched;
+    
+    
 	int menuOne;
+        char custName[10];
+        char hol[10];
+        
+        bool added = false;
+        
 	/*waitingList waitList;
 
          * 
@@ -142,7 +153,19 @@ int main()
            
         case 1:
             cout <<endl <<endl <<endl ;
-                
+            cout << "Name Of Customer: " ;
+            cin >> custName;
+            cout <<endl << "Name Of Holiday: "  ;
+            cin >> hol;
+            cout << endl;
+            char* available = sched.findAvailableMag(hol);
+            if(strcmp("NONE",available) == 0){
+                //WAITING LIST FUNCTIONALITY
+            }
+            else{
+               added = sched.add(hol,custName,available); 
+            }
+            
               
             break;
                 
