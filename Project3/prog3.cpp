@@ -15,6 +15,7 @@
 struct HolidaySched
 {
 	holBooking holidayList[10];
+	
 	bool cancel(char holidayName[], char customer[])
 	{
 		for( int i=0; i<10; i++ )
@@ -44,6 +45,12 @@ struct HolidaySched
 		}
 		return false;
 	}
+};
+
+struct MagiciansSched
+{
+	magBooking magicianList[10];
+
 };
 	
 
