@@ -9,11 +9,9 @@
 #include "node.h"
 #include "holBooking.h"
 #include <cstring>
+#include <fstream>
+#include <iostream>
 
-
-		node *first;
-		char holName[21];
-		
 
 holBooking::holBooking()
 {
@@ -100,7 +98,28 @@ const char* holBooking::getHolidayName() const
 	return holName;
 }
 
-void setHolidayName( char hol[] )
+void holBooking::setHolidayName( char hol[] )
 {
 	strcpy(holName, hol);
+}
+
+void	holBooking::printToFile( std::ofstream& out )
+{
+	if( out.good() )
+	{
+		out << holName << std::endl;
+		node *tmp = first;
+		if( first != NULL )
+		{
+			out << tmp->name << "  " << tmp->holiday << std::endl;
+			
+			while(tmp->next != NULL )
+			{
+				tmp = tmp->next;
+				out << tmp->name << "  " << tmp->holiday << std::endl;
+			}
+				
+		}
+		out << "BREAK BREAK" << std::endl;
+	}
 }

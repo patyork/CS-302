@@ -71,8 +71,13 @@ struct HolidaySched
 		//loop over holidays
 		for( int i=0; i<10; i++ )
 		{
-			out << holidayList;
+			//check for empty holiday list
+			if( strcmp(holidayList[i].getHolidayName(), "") == 0 )break;
+			
+			holidayList[i].printToFile(out);
+			
 		}
+		out.close();
 	}
 	
 	void loadHolidays()
@@ -83,7 +88,8 @@ struct HolidaySched
 		
 		if( in.good() )
 		{
-			for(int i=0; in.good() && i<10; i++)
+			
+			for(int i=0; !in.eof() && i<10; i++)
 			{
 				char temp[21];
 				in >> temp;
@@ -92,6 +98,34 @@ struct HolidaySched
 			}
 			in.close();
 		}
+	}
+	
+	//Function to load from Schedule.dat
+	void loadSchedule()
+	{
+		using namespace std;
+		
+		ifstream in ("Schedule.dat");
+		
+		if( in.good() )
+		{
+			for( int i=0; !in.eof() && i<10; i++ )
+			{
+				char temp[21];
+				char temp2[21];
+				in >> temp;
+				
+				holidayList[i].setHolidayName(temp);
+				
+				in >> temp >> temp2;
+				while( strcmp(temp, "BREAK") != 0 && strcmp(temp2, "BREAK") ) //check for holiday break
+				{
+					holidayList[i].addBooking(temp, temp2);
+					in >> temp >> temp2;
+				}
+			}
+		}
+	
 	}
 };
 
@@ -166,6 +200,12 @@ struct MagiciansSched
 			}
 			in.close();
 		}
+	}
+	
+	// Get schedule from Holiday Schedule (which read from Schedule.dat)
+	void loadSchedule()
+	{
+		
 	}
 };
 

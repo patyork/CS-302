@@ -9,6 +9,8 @@
 */
 
 #include "node.h"
+#include <fstream>
+
 
 class holBooking
 {
@@ -34,6 +36,9 @@ class holBooking
 		
 		//Function to change the holiday name
 		void setHolidayName( char hol[] );
+		
+		//Function to print holiday schedule to file
+		void	printToFile( std::ofstream& out );
 		
 		//We need a deconstructor
 
