@@ -14,7 +14,7 @@ class node
 	private:
 		node *next;
 		char	name[21];
-		char holiday[21];
+		char holiday[21];  //may also refer to a magician's name
 	public:
 		node();
 		node( node *n);
@@ -22,6 +22,7 @@ class node
 
 friend class waitingList;
 friend class magBooking;
+friend class holBooking;
 };
 
 #endif

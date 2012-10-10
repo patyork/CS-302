@@ -37,6 +37,7 @@ add_executable(out
   waitingList.cpp
   magBooking.cpp
   prog3.cpp
+  holBooking.cpp
 )
 
 # The target_link_libraries takes a binary name and a library

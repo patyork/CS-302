@@ -7,12 +7,49 @@
 */
 
 #include <iostream>
+#include <cstring>
 #include "waitingList.h"
 #include "magBooking.h"
+#include "holBooking.h"
+
+struct HolidaySched
+{
+	holBooking holidayList[10];
+	bool cancel(char holidayName[], char customer[])
+	{
+		for( int i=0; i<10; i++ )
+		{
+			if( strcmp( (holidayList[i]).getHolidayName(), holidayName) == 0 )
+			{
+				if( holidayList[i].cancelBooking( customer ) )
+				{
+					//check wait list
+				
+					return true;
+				}
+				return false;
+			}
+		}
+		return false;
+	}
+	
+	bool add(char holidayName[], char customer[])
+	{
+		for( int i=0; i<10; i++ )
+		{
+			if( strcmp( (holidayList[i]).getHolidayName(), holidayName) == 0 )
+			{
+				
+			}
+		}
+		return false;
+	}
+};
+	
 
 int main()
 {
-	waitingList waitList;
+	/*waitingList waitList;
 
 	magBooking magician1("Pat");
 
@@ -21,7 +58,7 @@ int main()
 	if( magician1.addBooking("cust", "easter") ) std::cout << "added" << std::endl;
 
 	if( magician1.cancelBooking( "easter" ) ) std::cout << "removed" << std::endl;
-	if( magician1.cancelBooking( "easter" ) ) std::cout << "removed" << std::endl;  //shouldn't return anything
+	if( magician1.cancelBooking( "easter" ) ) std::cout << "removed" << std::endl;  //shouldn't return anything*/
 
 
 
