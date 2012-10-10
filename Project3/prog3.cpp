@@ -247,6 +247,19 @@ int main()
 
     using namespace std;
     
+    ifstream in ("Schedule.dat");
+    
+    if( !in.good() )
+    {
+    		sched.loadMagicians();
+    		holiday.loadHolidays();
+    }
+    else
+    {
+    		holiday.loadSchedule();
+    		sched.loadSchedule();
+    }
+    
      while(1){  
     cout << endl <<endl << "Welcome To Harry Potter Time Scheduler" << endl <<endl ;
  
@@ -267,7 +280,7 @@ int main()
             cout << endl;
           
             char* available ;
-            available= new char [10];
+            available= new char [21];
             strcpy(available, sched.findAvailableMag(hol));
             
             if(strcmp("NONE",available) == 0){
