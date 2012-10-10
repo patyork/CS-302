@@ -12,14 +12,19 @@
 class node
 {
 	private:
-		node *next;
-		char	name[21];
-		char holiday[21];  //may also refer to a magician's name
+		node *next;		//pointer to next node
+		char	name[21];		//name of the customer
+		char holiday[21];  	//name of the holiday (also used for the name of the magician)
 	public:
+		//Constructor
 		node();
-		node( node *n);
+		
+		//Parameterized Constructor
 		node( node *n, char nme[], char hol[] );
+		
+		//We need deconstructors
 
+//Friend declarations
 friend class waitingList;
 friend class magBooking;
 friend class holBooking;

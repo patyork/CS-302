@@ -21,10 +21,19 @@ class magBooking
 		char magName[21];
 
 	public:
+		//Constructor
 		magBooking();
+		
+		//Parameterized Constructor
 		magBooking(char newMagName[] );
+		
+		//Function to add a booking for this magician on this holiday
 		bool addBooking( char custName[], char hol[] );
-		bool cancelBooking( char hol[] );  //cancel magicians booking based on holiday
+		
+		//Function to cancel this magician's booking on inputted holiday
+		bool cancelBooking( char hol[] );
+		
+		//We need deconstructors
 
 
 

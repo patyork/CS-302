@@ -17,10 +17,6 @@ node::node()
 	strcpy(holiday, "");
 }
 
-node::node( node *n)
-{
-}
-
 node::node( node *n, char nme[], char hol[] )
 {
 	next = n;

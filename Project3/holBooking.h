@@ -17,11 +17,21 @@ class holBooking
 		char holName[21];
 		
 	public:
+		//Constructor
 		holBooking();
+		
+		//Parameterized Constructor
 		holBooking(char newHolidayName[] );
+		
+		//Function to add a booking; does not find/check for magician availability
 		bool addBooking( char custName[], char magName[] );
-		bool cancelBooking( char custName[] );  //cancel holiday booking based on customer name
+		
+		//Function to cancel a booking for this holiday based on the customer name
+		bool cancelBooking( char custName[] );
 
+		//Function to return the holiday name
 		const char* getHolidayName() const;
+		
+		//We need a deconstructor
 
 };

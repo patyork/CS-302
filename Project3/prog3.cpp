@@ -22,7 +22,7 @@ struct HolidaySched
 		{
 			if( strcmp( (holidayList[i]).getHolidayName(), holidayName) == 0 )
 			{
-				if( holidayList[i].cancelBooking( customer ) )
+				if( holidayList[i].cancelBooking( customer ) )  //cancel booking
 				{
 					//check wait list
 				
