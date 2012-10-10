@@ -92,4 +92,27 @@ bool magBooking::cancelBooking( char hol[] )
 	return false;
 }
 
+bool magBooking::isAvailable( char hol[] )
+{
+	//Has no appointments, is avaiable
+	if( first == NULL ) return true;
+	
+	node *tmp = first;
+	if( strcmp(hol, tmp->holiday) == 0  ) return false; //not available
+	
+	while( tmp->next != NULL )
+	{
+		tmp = tmp->next;
+		if( strcmp(hol, tmp->holiday) == 0 ) return false; //not available
+	}
+	
+	return true;  //must be available
+
+}
+
+const char* magBooking::getMagName() const
+{
+	return magName;
+}
+
 

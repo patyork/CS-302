@@ -33,6 +33,11 @@ class magBooking
 		//Function to cancel this magician's booking on inputted holiday
 		bool cancelBooking( char hol[] );
 		
+		//Returns true if magician is available for this holiday
+		bool isAvailable( char hol[] );
+		
+		const char* getMagName() const;
+		
 		//We need deconstructors
 
 
