@@ -37,6 +37,7 @@ class magBooking
 		bool isAvailable( char hol[] );
 		
 		const char* getMagName() const;
+		bool setMagName(char newName[] );
 		
 		//We need deconstructors
 

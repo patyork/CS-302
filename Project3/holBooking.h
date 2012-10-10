@@ -32,6 +32,9 @@ class holBooking
 		//Function to return the holiday name
 		const char* getHolidayName() const;
 		
+		//Function to change the holiday name
+		void setHolidayName( char hol[] );
+		
 		//We need a deconstructor
 
 };

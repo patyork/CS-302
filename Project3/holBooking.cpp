@@ -99,3 +99,8 @@ const char* holBooking::getHolidayName() const
 {
 	return holName;
 }
+
+void setHolidayName( char hol[] )
+{
+	strcpy(holName, hol);
+}

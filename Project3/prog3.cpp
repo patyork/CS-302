@@ -2,7 +2,7 @@
 
 	Main Driver for Assignment 3
 
-	Author: Pat York
+	Author: Pat York & Roger Przybyla
 
 */
 
@@ -67,14 +67,38 @@ struct HolidaySched
 		
 		ofstream out (outputFileName);
 		
+		//loop over holidays
+		for( int i=0; i<10; i++ )
+		{
+			out << holidayList;
+		}
+	}
 	
+	void loadHolidays()
+	{
+		using namespace std;
+		
+		ifstream in ("Holidays.dat");
+		
+		if( in.good() )
+		{
+			for(int i=0; in.good() && i<10; i++)
+			{
+				char temp[21];
+				in >> temp;
+				
+				holidayList[i].setHolidayName(temp);
+			}
+			in.close();
+		}
 	}
 };
 
 struct MagiciansSched
 {
 	magBooking magicianList[10];
-
+	
+	//Return the name of an available Magician, or NONE
 	const char* findAvailableMag( char hol[] )
 	{
 		for( int i=0; i<10; i++ )
@@ -106,8 +130,45 @@ struct MagiciansSched
 		//couldn't find magician
 		return false;
 	}
-};
 	
+	//Signup new magician
+	void signupMagician(char magname[] )
+	{
+		for( int i=0; i<10; i++ )
+		{
+			//find an empty list slot
+			if( strcmp(magicianList[i].getMagName(), "") == 0 )
+			{
+				//set new name and return
+				magicianList[i].setMagName(magname);
+				return;
+			}
+		}
+		return;
+	}
+	
+	// Load in magicians from Magician.dat
+	void loadMagicians()
+	{
+		using namespace std;
+		
+		ifstream in ("Magician.dat");
+		
+		if( in.good() )
+		{
+			for(int i=0; in.good() && i<10; i++)
+			{
+				char temp[21];
+				in >> temp;
+				
+				magicianList[i].setMagName(temp);
+			}
+			in.close();
+		}
+	}
+};
+
+
 void menu();
 
 int main()
@@ -158,7 +219,10 @@ int main()
             cout <<endl << "Name Of Holiday: "  ;
             cin >> hol;
             cout << endl;
-            char* available = sched.findAvailableMag(hol);
+            
+            char *available;
+            strcpy(available, sched.findAvailableMag(hol));
+            
             if(strcmp("NONE",available) == 0){
                 //WAITING LIST FUNCTIONALITY
             }
@@ -206,7 +270,6 @@ int main()
 	return 0;
 }
 
-
 void menu(){
     
     using namespace std; 
@@ -218,3 +281,4 @@ void menu(){
     cout << "6) Quit" << endl;
     
 }
+

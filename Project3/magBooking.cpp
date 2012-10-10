@@ -115,4 +115,10 @@ const char* magBooking::getMagName() const
 	return magName;
 }
 
+bool magBooking::setMagName(char newName[] )
+{
+	strcpy(magName, newName);
+	return true;
+}
+
 
