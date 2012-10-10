@@ -36,8 +36,9 @@ class magBooking
 		//Returns true if magician is available for this holiday
 		bool isAvailable( char hol[] );
 		
-		const char* getMagName() const;
+		char* getMagName() const;
 		bool setMagName(char newName[] );
+		node* getFirst() const;
 		
 		//We need deconstructors
 

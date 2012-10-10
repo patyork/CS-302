@@ -110,15 +110,21 @@ bool magBooking::isAvailable( char hol[] )
 
 }
 
-const char* magBooking::getMagName() const
+char* magBooking::getMagName() const
 {
-	return magName;
+	char* tmp;
+	strcpy(tmp,magName);
+	return tmp;
 }
 
 bool magBooking::setMagName(char newName[] )
 {
 	strcpy(magName, newName);
 	return true;
+}
+node* magBooking::getFirst() const
+{
+	return first;
 }
 
 

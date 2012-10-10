@@ -32,7 +32,7 @@ class holBooking
 		bool cancelBooking( char custName[] );
 
 		//Function to return the holiday name
-		const char* getHolidayName() const;
+		char* getHolidayName() const;
 		
 		//Function to change the holiday name
 		void setHolidayName( char hol[] );

@@ -68,6 +68,8 @@ struct HolidaySched
 		
 		ofstream out (outputFileName);
 		
+		if( !out.good() ) cout << "Error Opening Schedule.dat for writing!";
+		
 		//loop over holidays
 		for( int i=0; i<10; i++ )
 		{
@@ -222,9 +224,9 @@ int main()
     
 	int menuOne;
         char* name;
-        char custName[20];
-        char hol[20];
-        char mage[20];
+        char custName[21];
+        char hol[21];
+        char mage[21];
         node * ptr;
         bool add = false;
         bool added = false;
@@ -357,7 +359,7 @@ int main()
 
                     if(strcmp(mage,sched.magicianList[i].getMagName())==0)
                     { 
-                        tmpp = sched.magicianList[i].first;
+                        tmpp = sched.magicianList[i].getFirst();
                         
                         while(tmpp != NULL){
           
@@ -421,6 +423,7 @@ int main()
                 
                 
             cout <<endl <<endl <<endl ;
+            holiday.saveData();
             return 0;
             break;
             

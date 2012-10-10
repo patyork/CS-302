@@ -93,9 +93,11 @@ bool holBooking::cancelBooking( char custName[] )  //cancel holiday booking base
 	return false;
 }
 
-const char* holBooking::getHolidayName() const
+char* holBooking::getHolidayName() const
 {
-	return holName;
+	char* tmp;
+	strcpy(tmp, holName);
+	return tmp;
 }
 
 void holBooking::setHolidayName( char hol[] )
