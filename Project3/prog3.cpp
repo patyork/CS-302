@@ -567,39 +567,43 @@ void load(MagiciansSched &magsch ,HolidaySched &holsch, waitingList &waiter, ifs
 	char holname[21];
 	char custname[21];
 	int run = 0;
-	
+	int found = 0;
 	
 	fin >>magname;
 	
-	while(fin.good() && strcmp(holname,"WAITLIST")!=0 ){
-		
-		cout << "Looper1" <<endl;
-		
+	while(fin.good() && strcmp(holname,"WAITLIST")!=0 && strcmp(magname,"WAITLIST")!=0  )
+	{
 		//read in mage flage, mage name, 1st holiday
 	
 		fin >>magname;
-		cout << endl << magname <<endl;
+
 		fin>>holname;
-		cout << endl << holname <<endl;
-		if( (strcmp(holname,"WAITLIST")==0) ){
-		break;
+		if( strcmp(holname,"Mage")==0 )
+		{
+			magsch.signupMagician(magname);		
+		} 
+		
+		if( (strcmp(holname,"WAITLIST")==0)){
+			magsch.signupMagician(magname);
+			break;
 		}
+		
 		//check for next mage flag
 		while( (strcmp(holname, "Mage")!=0) && (strcmp(holname, "WAITLIST") !=0) ){
 		
-		cout << "Looper2" <<endl;
+			cout << "Looper2" <<endl;
 		
-		fin>>custname;
-		//if schedule read in
-		holsch.add(holname, custname, magname);
-		if(run ==0){
-			magsch.signupMagician(magname);
-			run++;
-				cout << "Looper3" <<endl;
-		}
+			fin>>custname;
+			//if schedule read in
+			holsch.add(holname, custname, magname);
+			if(run ==0){
+				magsch.signupMagician(magname);
+				run++;
+					cout << "Looper3" <<endl;
+			}
 		
-		magsch.add(holname, custname, magname);
-		fin >> holname;
+			magsch.add(holname, custname, magname);
+			fin >> holname;
 		
 		}
 		run=0;
