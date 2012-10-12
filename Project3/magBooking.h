@@ -31,7 +31,7 @@ class magBooking
 		bool addBooking( char custName[], char hol[] );
 		
 		//Function to cancel this magician's booking on inputted holiday
-		bool cancelBooking( char hol[] );
+		bool cancelBooking( char hol[],char name[]  );
 		
 		//Returns true if magician is available for this holiday
 		bool isAvailable( char hol[] );
@@ -39,6 +39,9 @@ class magBooking
 		char* getMagName() const;
 		bool setMagName(char newName[] );
 		node* getFirst() const;
+		
+		//prints Schedule
+		void printMagSched();
 		
 		//We need deconstructors
 

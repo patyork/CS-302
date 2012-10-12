@@ -11,6 +11,9 @@
 #include "node.h"
 #include "magBooking.h"
 #include <cstring>
+#include <iostream>
+
+using namespace std;
 
 magBooking::magBooking()
 {
@@ -64,16 +67,19 @@ bool magBooking::addBooking( char custName[], char hol[] )
 	return false;
 
 }
-bool magBooking::cancelBooking( char hol[] )
+bool magBooking::cancelBooking( char hol[], char name[] )
 {
 	if( first == NULL ) return false;
 	
 	node *tmp = first;  //temp pointer
-	if( strcmp(hol, tmp->holiday) == 0  )	//if the booking is first in list
+	if( strcmp(hol, tmp->holiday) == 0  )	//if the holiday is first in list
 	{
-		first = first->next;
-		delete tmp;
-		return true;
+		if( strcmp(name, tmp->name) == 0 )		//if you've found the right customer
+		{
+			first = first->next;
+			delete tmp;
+			return true;
+		}
 	}
 
 	//else loop through all
@@ -82,11 +88,14 @@ bool magBooking::cancelBooking( char hol[] )
 		tmp = tmp->next;
 		if( strcmp(hol, tmp->holiday) == 0 )
 		{
-			node *tmp2 = first;
-			while( (tmp2->next)->next != tmp->next ) tmp2=tmp2->next; //loop to node previous
-			tmp2->next = tmp->next;
-			delete tmp;
-			return true;
+			if( strcmp(name, tmp->name) == 0 )		//if you've found the right customer
+			{
+				node *tmp2 = first;
+				while( (tmp2->next)->next != tmp->next ) tmp2=tmp2->next; //loop to node previous
+				tmp2->next = tmp->next;
+				delete tmp;
+				return true;
+			}
 		}
 	}
 	return false;
@@ -113,6 +122,7 @@ bool magBooking::isAvailable( char hol[] )
 char* magBooking::getMagName() const
 {
 	char* tmp;
+	tmp = new char[21];
 	strcpy(tmp,magName);
 	return tmp;
 }
@@ -126,5 +136,24 @@ node* magBooking::getFirst() const
 {
 	return first;
 }
-
+void magBooking::printMagSched()
+{
+	cout << magName << ":" << endl;
+	
+	node *tmp = first;
+	
+	if( first != NULL )
+	{
+	cout << "Holiday:" <<tmp->holiday <<"   " <<"Customer:"  << tmp->name <<endl;
+	
+		while( tmp->next != NULL )
+		{
+			tmp = tmp->next;
+			cout << "Holiday:" <<tmp->holiday <<"   " <<"Customer:"  << tmp->name <<endl;
+			
+			
+		}
+		
+	}
+}
 

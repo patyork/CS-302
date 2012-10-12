@@ -15,6 +15,8 @@
 #include "holBooking.h"
 #include "node.h"
 
+using namespace std;
+
 const char* outputFileName = "Schedule.dat";
 
 struct HolidaySched
@@ -47,9 +49,12 @@ struct HolidaySched
 			//find holiday list
 			if( strcmp( (holidayList[i]).getHolidayName(), holidayName) == 0 )
 			{
+				
+				
 				//attempt to add booking
 				if( holidayList[i].addBooking( customer, availableMagician ) )
 				{
+				
 					//Booking was added successfully
 					return true;
 				}
@@ -58,7 +63,7 @@ struct HolidaySched
 				return false;
 			}
 		}
-		return false;
+		return false; //false
 	}
 	
 	// Output schedule to Schedule.dat
@@ -86,7 +91,7 @@ struct HolidaySched
 	{
 		using namespace std;
 		
-		ifstream in ("Holidays.dat");
+		ifstream in ("Holiday.dat");
 		
 		if( in.good() )
 		{
@@ -136,16 +141,20 @@ struct MagiciansSched
 	magBooking magicianList[10];
 	
 	//Return the name of an available Magician, or NONE
-	const char* findAvailableMag( char hol[] )
+	char* findAvailableMag( char hol[] )
 	{
 		for( int i=0; i<10; i++ )
 		{
-			if( magicianList[i].isAvailable( hol ) ) return (magicianList[i]).getMagName();
+		  if( strcmp( magicianList[i].getMagName(), "") == 0 )
+		    return "NONE";
+			if( magicianList[i].isAvailable( hol ) ){
+				
+				return (magicianList[i]).getMagName();
+				}
 		}
-		
 		return "NONE";
 	}
-	
+
 	//add a booking to the magician's schedule, assumes available magician already found
 	bool add(char holidayName[], char customer[], char availableMagician[])
 	{
@@ -165,6 +174,22 @@ struct MagiciansSched
 			}
 		}
 		//couldn't find magician
+		return false;
+	}
+	
+	bool cancel(char holidayName[], char customer[])
+	{
+		
+		for( int i=0; i<10; i++ )
+		{
+			if( magicianList[i].cancelBooking( holidayName, customer ) )
+			{
+				
+				return true;
+			}
+		}
+		
+		
 		return false;
 	}
 	
@@ -193,12 +218,15 @@ struct MagiciansSched
 		
 		if( in.good() )
 		{
+		     char temp[21];
+      		in >> temp;
 			for(int i=0; in.good() && i<10; i++)
 			{
-				char temp[21];
-				in >> temp;
+				
+				
 				
 				magicianList[i].setMagName(temp);
+				in >> temp;
 			}
 			in.close();
 		}
@@ -224,6 +252,7 @@ int main()
     
 	int menuOne;
         char* name;
+        name = new char[21];
         char custName[21];
         char hol[21];
         char mage[21];
@@ -266,19 +295,21 @@ int main()
     menu();
     
     cin>>menuOne;
-    
+     
+
     switch(menuOne){
         
-    
+   
            
         case 1:
-            cout <<endl <<endl <<endl ;
-            cout << "Name Of Customer: " ;
+            cout << "Create Reservation:" << endl << endl;
+            cout << "Name Of Customer: ";
             cin >> custName;
-            cout <<endl << "Name Of Holiday: "  ;
+            cout <<endl << "Name Of Holiday: ";
             cin >> hol;
             cout << endl;
           
+
             char* available ;
             available= new char [21];
             strcpy(available, sched.findAvailableMag(hol));
@@ -290,25 +321,41 @@ int main()
             else{
                added = sched.add(hol,custName,available);
                if(added){
-               cout <<endl<<endl<< "Reservations Confirmed: " <<endl<<endl<<endl;
+               	if( holiday.add(hol, custName, available) )
+               	{
+               		cout <<endl<<endl<< "Reservation Confirmed: " <<endl;
                
-               cout << "Magician: " << available << endl;
+               		cout << "Magician: " << available << endl;
                
-               cout << "Holiday: " << hol <<endl;
+               		cout << "Holiday: " << hol <<endl;
                
-               cout << "Name Of Customer: " <<custName <<endl;
-               added = false;
+               		cout << "Name Of Customer: " <<custName <<endl;
+               		added = false;
+               	}
+               	else
+               	{
+               		cout << "Reservation error.." << endl;
+               	}
                }
                else{
                    cout << "Reservation Error" <<endl;
                }
             }
             
-              
+              delete available;
             break;
                 
         case 2:
-                cout <<endl <<endl <<endl ; 
+        		cout << "Cancel Reservation:" << endl << endl;
+               cout << "Name Of Customer: " ;
+            	cin >> custName;
+            	cout <<endl << "Name Of Holiday: "  ;
+            	cin >> hol;
+            	
+            	sched.cancel( hol, custName );
+            	holiday.cancel( hol, custName );
+            	
+            	
                 
               
             break;
@@ -318,26 +365,29 @@ int main()
                  cout<<"New Magicians Name: "<<endl;
                  cin >>mage;
                  sched.signupMagician(mage);
-                                      
-                 char* available2 ;          
                  
-                 available2= new char [10];
-                 
+               
                  for(int i = 0;i <10;i++){
                      
                               
                      char* available2 ;          
-                     available2= new char [10];
+                     available2 = new char [21];
                      strcpy(available2, sched.findAvailableMag(holiday.holidayList[i].getHolidayName()));
+                    
+                      
                      if(strcmp("NONE",available2) == 0){
                 
                      }
                      if(wList.findDequeue(holiday.holidayList[i].getHolidayName(), name))
+                     
+                    
+                     
                      {
-               
+             
                          added = sched.add(holiday.holidayList[i].getHolidayName(),name,available2);
-               
-                         if(added){              
+             		
+                         if(added){  
+                         	added = holiday.add(holiday.holidayList[i].getHolidayName(), name, available2);             
                              cout <<endl<<endl<< "Reservations Confirmed: " <<endl<<endl<<endl;             
                              cout << "Magician: " << available2 << endl; 
                              cout << "Holiday: " << holiday.holidayList[i].getHolidayName() <<endl;
@@ -366,8 +416,9 @@ int main()
                                    
                 char* available3 ;          
                 
-                available3= new char [10];             
+                available3= new char [21];             
                 node * tmpp ;
+                
                 for(int i = 0;i <10;i++){
 
                     if(strcmp(mage,sched.magicianList[i].getMagName())==0)
@@ -380,6 +431,7 @@ int main()
                             strcpy(available3, sched.findAvailableMag(tmpp->holiday));
                            
                         if(strcmp("NONE",available3) == 0){
+                  
                                 wList.priorityEnqueue(tmpp->name,tmpp->holiday);
                
                                 cout<< "No magicians Available for that Holiday, You are on the waiting list" <<endl;
@@ -388,7 +440,10 @@ int main()
                
                          added = sched.add(tmpp->holiday,tmpp->name,available3);
                
-                         if(added){              
+                         if(added){     
+                         
+                         added = holiday.add(tmpp->holiday,tmpp->name,available3)     ;
+                               
                              cout <<endl<<endl<< "Reservations Confirmed: " <<endl<<endl<<endl;             
                              cout << "Magician: " << available3 << endl; 
                              cout << "Holiday: " << tmpp->holiday <<endl;
@@ -410,33 +465,65 @@ int main()
             break;
                
         case 5:
-                
+                char menuOneChar;
             cout << endl <<"Status: "<<endl <<endl;
             cout <<"By (H)oliday or (M)agician :" <<endl <<endl;
-            cin >>menuOne;
+            cin >>menuOneChar;
             
-            switch(menuOne)
+            switch(menuOneChar)
+            {
                     
-        case 'H' :
-        case 'h' :
-            cin >> hol;
-             cout <<endl <<endl <<endl ; 
+       		 case 'H' :
+	        	 case 'h' :
+	        	 
+	        	 	cout << "Please Enter Holiday:" <<endl;
+	        	 	
+     			       cin >> hol;
+      		        cout <<endl <<endl <<endl ; 
             
-            break;
+            	for( int i=0; i<10; i++ )
+            	{
+            		if( strcmp( holiday.holidayList[i].getHolidayName(), hol ) == 0 )
+            		{
+            			holiday.holidayList[i].printHolidaySched();
+            			i=11;
+            		}
+            		if(i==9){
+            		cout << "That holiday is not celebrated." <<endl;
+            		
+            		}
+            	}
+     		       break;
             
-        case 'M':
-        case'm':
+     	   case 'M':
+     	   case'm':
             
-            cin >> mage;
-                cout <<endl <<endl <<endl ; 
-               
-            break;
+
+               	    cout << "Please Enter Magician:" <<endl;
+	        	 	
+     			   cin >> mage;
+      		        cout <<endl <<endl <<endl ; 
+            
+            			for( int i=0; i<10; i++ )
+            			{
+            				if( strcmp( sched.magicianList[i].getMagName(), mage ) == 0 )
+            				{
+            					sched.magicianList[i].printMagSched();
+            					i=11;
+            				}
+            				if(i==9){
+            				cout << "That magician is no longer with us." <<endl;
+            		
+            				}
+            			}
+      		      	break;
+      		}
                 
-        case 6:
+       case 6:
                 
                 
-            cout <<endl <<endl <<endl ;
-            holiday.saveData();
+           cout <<endl <<endl <<endl ;
+            //holiday.saveData();
             return 0;
             break;
             
@@ -447,7 +534,7 @@ int main()
                 
     }
     }
-	return 0;
+	//return 0;
 }
 
 void menu(){

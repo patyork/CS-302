@@ -12,6 +12,7 @@
 #include <fstream>
 #include <iostream>
 
+using namespace std;
 
 holBooking::holBooking()
 {
@@ -38,9 +39,10 @@ bool holBooking::addBooking( char custName[], char magName[] )
 		node *tmp = first;
 
 		// if it belongs just before the current one
-		if( strcmp(magName, tmp->holiday) < 0 )
+		if( strcmp(custName, tmp->name) < 0 )
 		{
 			node *tmp2 = new node(tmp->next, tmp->name, tmp->holiday);
+			
 			tmp->next = tmp2;
 			strcpy(tmp->name, custName);
 			strcpy(tmp->holiday, magName);
@@ -52,7 +54,7 @@ bool holBooking::addBooking( char custName[], char magName[] )
 			tmp = tmp->next;
 
 			// if it belongs just before the current one
-			if( strcmp(magName, tmp->holiday) < 0 )
+			if( strcmp(custName, tmp->name) < 0 )
 			{
 				node *tmp2 = new node(tmp->next, tmp->name, tmp->holiday);
 				tmp->next = tmp2;
@@ -61,6 +63,9 @@ bool holBooking::addBooking( char custName[], char magName[] )
 				return true;
 			}
 		}
+		tmp->next = new node(NULL, custName, magName);
+	
+		return true;
 	}
 	return false;
 }
@@ -96,6 +101,7 @@ bool holBooking::cancelBooking( char custName[] )  //cancel holiday booking base
 char* holBooking::getHolidayName() const
 {
 	char* tmp;
+	tmp = new char[21];
 	strcpy(tmp, holName);
 	return tmp;
 }
@@ -123,5 +129,54 @@ void	holBooking::printToFile( std::ofstream& out )
 				
 		}
 		out << "BREAK BREAK" << std::endl;
+	}
+}
+
+//return the name of the magician working this holiday for this customer
+char* holBooking::getMagName(char cust[] )
+{
+	char* magname;
+	magname = new char[21];
+	
+	if( first == NULL ) return "NONE";
+	
+	node *tmp = first;  //temp pointer
+	if( strcmp(cust, tmp->name) == 0  )	//if the booking is first in list
+	{
+		strcpy(magname, tmp->holiday);
+		return magname;
+	}
+
+	//else loop through all
+	while( tmp->next != NULL )
+	{
+		tmp = tmp->next;
+		if( strcmp(cust, tmp->name) == 0 )
+		{
+			strcpy(magname, tmp->holiday);
+			return magname;
+		}
+	}
+	return "NONE";
+}
+
+void holBooking::printHolidaySched()
+{
+	cout << holName << ":" << endl;
+	
+	node *tmp = first;
+	
+	if( first != NULL )
+	{
+	cout << "Magician:" <<tmp->holiday <<"   " <<"Customer:"  << tmp->name <<endl;
+	
+		while( tmp->next != NULL )
+		{
+			tmp = tmp->next;
+			cout << "Magician:" <<tmp->holiday <<"   " <<"Customer:"  << tmp->name <<endl;
+			
+			
+		}
+		
 	}
 }

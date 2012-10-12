@@ -40,6 +40,12 @@ class holBooking
 		//Function to print holiday schedule to file
 		void	printToFile( std::ofstream& out );
 		
+		//Returns the name of the magician working for this customer
+		char* getMagName(char cust[] );
+		
+		//Print out the work chedule for this holiday
+		void printHolidaySched();
+		
 		//We need a deconstructor
 
 };

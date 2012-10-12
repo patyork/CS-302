@@ -9,7 +9,7 @@ project(Assignment3)
 # using it.
 # -g enables debugger symbols.
 # -std=c++0x enables C++11.
-set(CMAKE_CXX_FLAGS "-g -Wall")
+set(CMAKE_CXX_FLAGS "-g -Wall -std=c++0x")
 
 # We use this line to specify the location of the compiler's output.
 # PROJECT_SOURCE_DIR is a cmake variable that specifies the current
