@@ -43,7 +43,11 @@ class magBooking
 		//prints Schedule
 		void printMagSched();
 		
+		//dropout magician
+		void dropout();
+
 		//We need deconstructors
+		~magBooking();
 
 
 

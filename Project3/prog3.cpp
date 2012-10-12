@@ -242,6 +242,7 @@ struct MagiciansSched
 
 void menu();
 
+
 int main()
 {
      
@@ -374,7 +375,8 @@ int main()
                      available2 = new char [21];
                      strcpy(available2, sched.findAvailableMag(holiday.holidayList[i].getHolidayName()));
                     
-                      
+                      cout << holiday.holidayList[i].getHolidayName() <<endl ;
+
                      if(strcmp("NONE",available2) == 0){
                 
                      }
@@ -385,7 +387,7 @@ int main()
                      {
              
                          added = sched.add(holiday.holidayList[i].getHolidayName(),name,available2);
-             		
+             		cout << "Looper" <<endl;
                          if(added){  
                          	added = holiday.add(holiday.holidayList[i].getHolidayName(), name, available2);             
                              cout <<endl<<endl<< "Reservations Confirmed: " <<endl<<endl<<endl;             
@@ -457,9 +459,14 @@ int main()
                
                          }
                      
-                     } 
+                     }
+			//delete magician from hilday list.
+			holiday.cancel(tmpp->holiday, tmpp->name);
                             tmpp = tmpp->next;
                  }
+//delete magician fro sched.magicianList
+sched.magicianList[i].dropout();
+
                     }
                 }
             break;
@@ -474,11 +481,11 @@ int main()
             {
                     
        		 case 'H' :
-	        	 case 'h' :
+	         case 'h' :
 	        	 
-	        	 	cout << "Please Enter Holiday:" <<endl;
+	        	cout << "Please Enter Holiday:" <<endl;
 	        	 	
-     			       cin >> hol;
+     			cin >> hol;
       		        cout <<endl <<endl <<endl ; 
             
             	for( int i=0; i<10; i++ )
@@ -518,7 +525,7 @@ int main()
             			}
       		      	break;
       		}
-                
+                break;
        case 6:
                 
                 

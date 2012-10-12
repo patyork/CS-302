@@ -157,3 +157,23 @@ void magBooking::printMagSched()
 	}
 }
 
+//dropout magician
+void magBooking::dropout(){
+
+strcpy(magName, "");
+node* tmp;
+tmp = first;
+
+while(tmp !=NULL){
+tmp = first->next;
+delete first;
+first = tmp;
+
+}
+
+}
+//We need deconstructors
+magBooking::~magBooking(){
+dropout();
+}
+
