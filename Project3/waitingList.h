@@ -26,6 +26,7 @@ class waitingList
 		// Function for finding the first person on the wait list for a certain holiday
 		bool findDequeue( char Holiday[],char *custname );
           int getLength();
+          node* getFirst();
                 
 
 	

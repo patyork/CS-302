@@ -103,3 +103,9 @@ bool waitingList::findDequeue( char Holiday[], char* custname )
 	}
 	return false;
 }
+
+node* waitingList::getFirst()
+{
+	return first;
+
+}

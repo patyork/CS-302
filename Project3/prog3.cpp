@@ -95,13 +95,15 @@ struct HolidaySched
 		
 		if( in.good() )
 		{
-			
+			char temp[21];
+			in >> temp;
+
 			for(int i=0; !in.eof() && i<10; i++)
 			{
-				char temp[21];
-				in >> temp;
+
 				
 				holidayList[i].setHolidayName(temp);
+				in >>temp;
 			}
 			in.close();
 		}
@@ -242,6 +244,8 @@ struct MagiciansSched
 
 void menu();
 
+void load(MagiciansSched &magsch ,HolidaySched &holsch, waitingList &waiter, ifstream &fin);
+void save(MagiciansSched &magsch ,HolidaySched &holsch, waitingList &waiter);
 
 int main()
 {
@@ -286,10 +290,11 @@ int main()
     }
     else
     {
-    		holiday.loadSchedule();
-    		sched.loadSchedule();
+    		holiday.loadHolidays();
+    		load(sched,holiday,wList,in);
     }
     
+
      while(1){  
     cout << endl <<endl << "Welcome To Harry Potter Time Scheduler" << endl <<endl ;
  
@@ -375,7 +380,6 @@ int main()
                      available2 = new char [21];
                      strcpy(available2, sched.findAvailableMag(holiday.holidayList[i].getHolidayName()));
                     
-                      cout << holiday.holidayList[i].getHolidayName() <<endl ;
 
                      if(strcmp("NONE",available2) == 0){
                 
@@ -387,7 +391,7 @@ int main()
                      {
              
                          added = sched.add(holiday.holidayList[i].getHolidayName(),name,available2);
-             		cout << "Looper" <<endl;
+             	
                          if(added){  
                          	added = holiday.add(holiday.holidayList[i].getHolidayName(), name, available2);             
                              cout <<endl<<endl<< "Reservations Confirmed: " <<endl<<endl<<endl;             
@@ -529,8 +533,8 @@ sched.magicianList[i].dropout();
        case 6:
                 
                 
-           cout <<endl <<endl <<endl ;
-            //holiday.saveData();
+           //save the data
+            save(sched, holiday, wList);
             return 0;
             break;
             
@@ -554,5 +558,122 @@ void menu(){
     cout << "5) Status" << endl;
     cout << "6) Quit" << endl;
     
+}
+
+void load(MagiciansSched &magsch ,HolidaySched &holsch, waitingList &waiter, ifstream &fin)
+{
+
+	char magname[21];
+	char holname[21];
+	char custname[21];
+	int run = 0;
+	
+	
+	fin >>magname;
+	
+	while(fin.good() && strcmp(holname,"WAITLIST")!=0 ){
+		
+		cout << "Looper1" <<endl;
+		
+		//read in mage flage, mage name, 1st holiday
+	
+		fin >>magname;
+		cout << endl << magname <<endl;
+		fin>>holname;
+		cout << endl << holname <<endl;
+		if( (strcmp(holname,"WAITLIST")==0) ){
+		break;
+		}
+		//check for next mage flag
+		while( (strcmp(holname, "Mage")!=0) && (strcmp(holname, "WAITLIST") !=0) ){
+		
+		cout << "Looper2" <<endl;
+		
+		fin>>custname;
+		//if schedule read in
+		holsch.add(holname, custname, magname);
+		if(run ==0){
+			magsch.signupMagician(magname);
+			run++;
+				cout << "Looper3" <<endl;
+		}
+		
+		magsch.add(holname, custname, magname);
+		fin >> holname;
+		
+		}
+		run=0;
+		
+	
+	
+	
+	}	
+	fin >> magname; //Second waitlist flag
+	fin >> custname >> holname;
+	
+	while(fin.good()){
+	waiter.enqueue( custname, holname);
+	fin >> custname >> holname;
+	}
+
+}
+
+void save(MagiciansSched &magsch ,HolidaySched &holsch, waitingList &waiter)
+{
+	ofstream fout("Schedule.dat");
+
+	if(fout.good()){
+
+cout << magsch.magicianList[0].getMagName() <<endl;
+cout << magsch.magicianList[1].getMagName()<<endl;
+cout << magsch.magicianList[2].getMagName()<<endl;
+cout << magsch.magicianList[3].getMagName()<<endl;
+cout << magsch.magicianList[4].getMagName()<<endl;
+cout << magsch.magicianList[5].getMagName()<<endl;
+cout << magsch.magicianList[6].getMagName()<<endl;
+cout << magsch.magicianList[7].getMagName()<<endl;
+cout << magsch.magicianList[8].getMagName()<<endl;
+cout << magsch.magicianList[9].getMagName()<<endl;
+
+
+		for(int i =0; i <10;i++)
+		{
+		
+			
+			if( strcmp(magsch.magicianList[i].getMagName(), "") != 0 )
+			{
+				fout << "Mage" << endl
+					<< magsch.magicianList[i].getMagName() << endl;
+				
+				node *tmp = magsch.magicianList[i].getFirst();
+				while( tmp != NULL )
+				{
+					fout << tmp->holiday << endl
+						<< tmp->name << endl;
+					tmp = tmp->next;
+				}
+			}
+	
+		}
+		
+		node *tmp;
+		tmp = waiter.getFirst();
+		
+		fout << "WAITLIST" << endl
+			<< "WAITLIST" << endl;
+		
+		//Loop over wait list
+		while( tmp != NULL )
+		{
+			fout << tmp->name << endl
+				<< tmp->holiday << endl;
+			
+			//head to next node
+			tmp = tmp->next;
+		}
+		
+		//close output file
+		fout.close();
+	}
 }
 
