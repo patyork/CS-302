@@ -9,7 +9,7 @@
 */
 
 #include "node.h"
-#include "magBooking.h"
+#include "adt3_2.h"	//magbooking
 #include <cstring>
 #include <iostream>
 

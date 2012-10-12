@@ -9,7 +9,7 @@ project(Assignment3)
 # using it.
 # -g enables debugger symbols.
 # -std=c++0x enables C++11.
-set(CMAKE_CXX_FLAGS "-g -Wall -std=c++0x")
+set(CMAKE_CXX_FLAGS "-g")
 
 # We use this line to specify the location of the compiler's output.
 # PROJECT_SOURCE_DIR is a cmake variable that specifies the current
@@ -34,11 +34,11 @@ include_directories(
 # binary named tests
 add_executable(out 
   node.cpp
-  waitingList.cpp
-  magBooking.cpp
+  adt3_3.cpp
+  adt3_2.cpp
   prog3.cpp
   #adt3_test.cpp
-  holBooking.cpp
+  adt3_1.cpp
 )
 
 # The target_link_libraries takes a binary name and a library

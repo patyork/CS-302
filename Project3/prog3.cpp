@@ -10,9 +10,9 @@
 #include <fstream>
 #include <iomanip>
 #include <cstring>
-#include "waitingList.h"
-#include "magBooking.h"
-#include "holBooking.h"
+#include "adt3_3.h"   //waiting list
+#include "adt3_2.h"	//magbooking
+#include "adt3_1.h"	//holbooking
 #include "node.h"
 
 using namespace std;
@@ -591,7 +591,6 @@ void load(MagiciansSched &magsch ,HolidaySched &holsch, waitingList &waiter, ifs
 		//check for next mage flag
 		while( (strcmp(holname, "Mage")!=0) && (strcmp(holname, "WAITLIST") !=0) ){
 		
-			cout << "Looper2" <<endl;
 		
 			fin>>custname;
 			//if schedule read in
@@ -599,7 +598,6 @@ void load(MagiciansSched &magsch ,HolidaySched &holsch, waitingList &waiter, ifs
 			if(run ==0){
 				magsch.signupMagician(magname);
 				run++;
-					cout << "Looper3" <<endl;
 			}
 		
 			magsch.add(holname, custname, magname);
@@ -627,17 +625,6 @@ void save(MagiciansSched &magsch ,HolidaySched &holsch, waitingList &waiter)
 	ofstream fout("Schedule.dat");
 
 	if(fout.good()){
-
-cout << magsch.magicianList[0].getMagName() <<endl;
-cout << magsch.magicianList[1].getMagName()<<endl;
-cout << magsch.magicianList[2].getMagName()<<endl;
-cout << magsch.magicianList[3].getMagName()<<endl;
-cout << magsch.magicianList[4].getMagName()<<endl;
-cout << magsch.magicianList[5].getMagName()<<endl;
-cout << magsch.magicianList[6].getMagName()<<endl;
-cout << magsch.magicianList[7].getMagName()<<endl;
-cout << magsch.magicianList[8].getMagName()<<endl;
-cout << magsch.magicianList[9].getMagName()<<endl;
 
 
 		for(int i =0; i <10;i++)
